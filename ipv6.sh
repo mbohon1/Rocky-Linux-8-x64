@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# Define variables
 z="
 "
 Obz='oi. '
@@ -37,9 +36,8 @@ cBz=' cha'
 QCz='  __'
 
 # Your script logic here
-eval "$Az$Bz$Cz$Dz$Ez$Fz$Gz$Hz$Iz$Jz$Kz$Lz$Mz$Nz$Oz$Pz$Qz$Rz$Sz$Tz$Uz$Vz$Wz$Xz"
-eval "$Rz$Yz$Zz$Rz$az$Pz$Qz"
-eval "$bz$Sz$cz$dz$ez"
-eval "$bz$fz$Zz$bz$az$gz$hz$iz"
-eval "$jz$kz$lz$mj$nzo$pq$rstuvwxzy"
-eval "$pq$rstuvwxzy"
+eval "$Az$Bz$Cz$Dz$Ez$Fz$Gz$Hz$Iz$Jz$Kz$Lz$Mz$Nz$Oz$Pz$Qz"
+eval "$Rz$Sz$Tz$Uz$Vz$Wz$Xz"
+eval "$Rz$Yz$Zz$Rz$aSz$bSz$cSz$dSz"
+eval "$bz$fSz$gSz$hSz$iSz$jSz"
+eval "$kSz$lSz$mSz$nSz$oSz$pSz$qSz$rSz$sSz$tSz"
