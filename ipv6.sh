@@ -122,7 +122,7 @@ FIRST_PORT=10000
 LAST_PORT=$(($FIRST_PORT + $COUNT))
 
 # Detect the network interface name (usually eth0 or ensXXX)
-INTERFACE=$(ip route get 8.8.8.8 | awk -- '{printf "%s", $(NF-2); exit}')
+INTERFACE=$(ip route get 8.8.8.8 | awk '/dev/ {print $5}')
 
 # Check if INTERFACE is empty and handle error if necessary.
 if [ -z "$INTERFACE" ]; then
