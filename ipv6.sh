@@ -78,7 +78,7 @@ EOF
 
 gen_ifconfig() {
     cat <<EOF
-$(awk -F "/" '{print "ifconfig eth0 inet6 add " $5 "/64"}' ${WORKDATA})
+$(awk -F "/" '{print "ifconfig ${INTERFACE} inet6 add " $5 "/64"}' ${WORKDATA})
 EOF
 }
 
@@ -97,8 +97,11 @@ IP6=$(curl -6 -s icanhazip.com | cut -f1-4 -d':')
 
 echo "Internal ip = ${IP4}. External sub for ip6 = ${IP6}"
 
+# Detect primary network interface dynamically.
+INTERFACE=$(ip route get 8.8.8.8 | awk -- '{printf "%s", $5; exit}')
+
 # Set default COUNT if not provided as an environment variable or command-line argument.
-COUNT=${COUNT:-500}
+COUNT=${COUNT:-49}
 echo "Creating ${COUNT} proxies."
 
 FIRST_PORT=10000
