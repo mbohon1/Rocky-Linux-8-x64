@@ -28,7 +28,12 @@ install_3proxy() {
         fuser -k /usr/local/etc/3proxy/bin/3proxy || true
     fi
     
-    cp src/3proxy /usr/local/etc/3proxy/bin/
+    # Retry mechanism to handle "Text file busy" error
+    for i in {1..5}; do
+        cp src/3proxy /usr/local/etc/3proxy/bin/ && break || sleep 2
+        echo "Retrying to copy 3proxy binary... Attempt $i"
+    done
+
     cp ./scripts/rc.d/proxy.sh /etc/init.d/3proxy
     chmod +x /etc/init.d/3proxy
     chkconfig --add 3proxy
