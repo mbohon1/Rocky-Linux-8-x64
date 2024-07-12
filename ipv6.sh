@@ -26,6 +26,8 @@ install_3proxy() {
         kill $(cat /usr/local/etc/3proxy/3proxy.pid) || true
         sleep 1
         fuser -k /usr/local/etc/3proxy/bin/3proxy || true
+        rm -f /usr/local/etc/3proxy/bin/3proxy || true
+        sleep 1
     fi
     
     # Retry mechanism to handle "Text file busy" error
@@ -33,6 +35,11 @@ install_3proxy() {
         cp src/3proxy /usr/local/etc/3proxy/bin/ && break || sleep 2
         echo "Retrying to copy 3proxy binary... Attempt $i"
     done
+
+    if [ ! -f /usr/local/etc/3proxy/bin/3proxy ]; then
+        echo "Error: Failed to copy 3proxy binary after multiple attempts."
+        exit 1
+    fi
 
     cp ./scripts/rc.d/proxy.sh /etc/init.d/3proxy
     chmod +x /etc/init.d/3proxy
