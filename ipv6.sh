@@ -22,7 +22,11 @@ install_3proxy() {
     mkdir -p /usr/local/etc/3proxy/{bin,logs,stat}
     
     # Stop any running instance of 3proxy before copying the binary
-    service 3proxy stop
+    if [ -f /usr/local/etc/3proxy/3proxy.pid ]; then
+        kill $(cat /usr/local/etc/3proxy/3proxy.pid) || true
+        sleep 1
+        fuser -k /usr/local/etc/3proxy/bin/3proxy || true
+    fi
     
     cp src/3proxy /usr/local/etc/3proxy/bin/
     cp ./scripts/rc.d/proxy.sh /etc/init.d/3proxy
@@ -52,7 +56,7 @@ EOF
 }
 
 gen_proxy_file_for_user() {
-    cat >proxy.txt <<EOF
+    cat > proxy.txt <<EOF
 $(awk -F "/" '{print $3 ":" $4 ":" $1 ":" $2 }' ${WORKDATA})
 EOF
 }
@@ -102,13 +106,16 @@ IP6=$(curl -6 -s ifconfig.me | cut -f1-4 -d':')
 
 echo "Internal ip = ${IP4}. External sub for ip6 = ${IP6}"
 
-echo "How many proxy do you want to create? Example 500"
+# Default value for COUNT for non-interactive testing (e.g., set to 500)
+DEFAULT_COUNT=500
+
+echo "How many proxy do you want to create? Example ${DEFAULT_COUNT}"
 read COUNT
 
-# Ensure COUNT is a valid number before proceeding
+# Use default value if COUNT is empty or invalid (non-interactive mode)
 if ! [[ "$COUNT" =~ ^[0-9]+$ ]]; then
-   echo "Error: Invalid number of proxies."
-   exit 1
+   COUNT=$DEFAULT_COUNT
+   echo "Using default count: ${COUNT}"
 fi
 
 FIRST_PORT=10000
@@ -131,7 +138,7 @@ chmod +x ${WORKDIR}/boot_*.sh /etc/rc.local
 
 gen_3proxy >/usr/local/etc/3proxy/3proxy.cfg
 
-cat >>/etc/rc.local <<EOF
+cat >> /etc/rc.local <<EOF
 bash ${WORKDIR}/boot_iptables.sh
 bash ${WORKDIR}/boot_ifconfig.sh
 ulimit -n 10048
