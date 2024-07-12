@@ -130,23 +130,32 @@ if [ -z "$INTERFACE" ]; then
    exit 1
 fi
 
+echo "Detected network interface: ${INTERFACE}"
+
 gen_data >$WORKDIR/data.txt
 gen_iptables >$WORKDIR/boot_iptables.sh
-gen_ifconfig >$WORKDIR/boot_ifconfig.sh
+
+# Check if the detected interface is correct before proceeding with ifconfig commands.
+if ip link show "$INTERFACE" > /dev/null; then 
+   gen_ifconfig >$WORKDIR/boot_ifconfig.sh 
+else 
+   echo "Error: Network interface ${INTERFACE} does not exist." 
+   exit 1 
+fi 
 
 chmod +x ${WORKDIR}/boot_*.sh /etc/rc.local
 
 gen_3proxy >/usr/local/etc/3proxy/3proxy.cfg
 
-cat >> /etc/rc.local <<EOF
-bash ${WORKDIR}/boot_iptables.sh
-bash ${WORKDIR}/boot_ifconfig.sh
-ulimit -n 10048
-service 3proxy start
-EOF
+cat >> /etc/rc.local <<EOF 
+bash ${WORKDIR}/boot_iptables.sh 
+bash ${WORKDIR}/boot_ifconfig.sh 
+ulimit -n 10048 
+service 3proxy start 
+EOF 
 
-bash /etc/rc.local
+bash /etc/rc.local 
 
-gen_proxy_file_for_user
+gen_proxy_file_for_user 
 
-upload_proxy
+upload_proxy 
