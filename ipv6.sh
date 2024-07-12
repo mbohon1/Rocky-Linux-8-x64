@@ -15,7 +15,7 @@ gen64() {
 }
 
 install_3proxy() {
-    echo "installing 3proxy"
+    echo "Đang cài đặt 3proxy"
     URL="https://raw.githubusercontent.com/ngochoaitn/multi_proxy_ipv6/main/3proxy-3proxy-0.8.6.tar.gz"
     wget -qO- $URL | bsdtar -xvf-
     cd 3proxy-3proxy-0.8.6
@@ -59,9 +59,9 @@ upload_proxy() {
     zip --password $PASS proxy.zip proxy.txt
     URL=$(curl -s --upload-file proxy.zip https://bashupload.com/proxy.zip)
 
-    echo "Proxy is ready! Format IP:PORT:LOGIN:PASS"
-    echo "Download zip archive from: ${URL}"
-    echo "Password: ${PASS}"
+    echo "Proxy đã sẵn sàng! Định dạng IP:PORT:LOGIN:PASS"
+    echo "Tải xuống tệp zip từ: ${URL}"
+    echo "Mật khẩu: ${PASS}"
 }
 
 gen_data() {
@@ -82,12 +82,12 @@ $(awk -F "/" '{print "ifconfig ${INTERFACE} inet6 add " $5 "/64"}' ${WORKDATA})
 EOF
 }
 
-echo "installing apps"
+echo "Đang cài đặt các ứng dụng cần thiết"
 dnf install -y gcc net-tools bsdtar zip curl >/dev/null
 
 install_3proxy
 
-echo "working folder = /home/proxy-installer"
+echo "Thư mục làm việc = /home/proxy-installer"
 WORKDIR="/home/proxy-installer"
 WORKDATA="${WORKDIR}/data.txt"
 mkdir -p $WORKDIR && cd $_
@@ -95,14 +95,15 @@ mkdir -p $WORKDIR && cd $_
 IP4=$(curl -4 -s icanhazip.com)
 IP6=$(curl -6 -s icanhazip.com | cut -f1-4 -d':')
 
-echo "Internal ip = ${IP4}. External sub for ip6 = ${IP6}"
+echo "IP nội bộ = ${IP4}. Subnet ngoài cho IPv6 = ${IP6}"
 
-# Detect primary network interface dynamically.
+# Phát hiện giao diện mạng chính xác.
 INTERFACE=$(ip route get 8.8.8.8 | awk -- '{printf "%s", $5; exit}')
+echo "Giao diện mạng được phát hiện là: ${INTERFACE}"
 
-# Set default COUNT if not provided as an environment variable or command-line argument.
-COUNT=${COUNT:-49}
-echo "Creating ${COUNT} proxies."
+# Đặt giá trị mặc định cho COUNT nếu không được cung cấp qua biến môi trường hoặc tham số dòng lệnh.
+COUNT=${COUNT:-500}
+echo "Tạo ${COUNT} proxy."
 
 FIRST_PORT=10000
 LAST_PORT=$(($FIRST_PORT + $COUNT))
