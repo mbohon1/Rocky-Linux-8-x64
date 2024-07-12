@@ -20,6 +20,10 @@ install_3proxy() {
     cd 3proxy-3proxy-0.8.6
     make -f Makefile.Linux
     mkdir -p /usr/local/etc/3proxy/{bin,logs,stat}
+    
+    # Stop any running instance of 3proxy before copying the binary
+    service 3proxy stop
+    
     cp src/3proxy /usr/local/etc/3proxy/bin/
     cp ./scripts/rc.d/proxy.sh /etc/init.d/3proxy
     chmod +x /etc/init.d/3proxy
@@ -89,7 +93,9 @@ install_3proxy
 echo "working folder = /home/proxy-installer"
 WORKDIR="/home/proxy-installer"
 WORKDATA="${WORKDIR}/data.txt"
-mkdir $WORKDIR && cd $_
+
+# Create working directory if it doesn't exist
+mkdir -p $WORKDIR && cd $_
 
 IP4=$(curl -4 -s ifconfig.me)
 IP6=$(curl -6 -s ifconfig.me | cut -f1-4 -d':')
@@ -98,6 +104,12 @@ echo "Internal ip = ${IP4}. External sub for ip6 = ${IP6}"
 
 echo "How many proxy do you want to create? Example 500"
 read COUNT
+
+# Ensure COUNT is a valid number before proceeding
+if ! [[ "$COUNT" =~ ^[0-9]+$ ]]; then
+   echo "Error: Invalid number of proxies."
+   exit 1
+fi
 
 FIRST_PORT=10000
 LAST_PORT=$(($FIRST_PORT + $COUNT))
